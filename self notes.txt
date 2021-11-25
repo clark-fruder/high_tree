@@ -1,0 +1,107 @@
+================================================
+Designing for complexity
+================================================
+
+Organization Entity for cuplanig accounts
+master Account
+Add acoounts to organization: create account or inivite
+Create organiztional units
+
+Identity and Access Management (IAM)
+====================================
+IAM User 
+IAM Group
+IAM Policy - consists from:
+ - Principal
+ - Action
+ - Resource
+ - Condition
+2 types of policies: Identity based & resource based
+IAM Role 
+ - Like user but without credentials or direct requests
+ - Can be attached to differnet entities: Service, Acoount, Web Identity..
+ - User can switch role
+Service-linked Role
+ - Only assumed by an AWS service
+ - Permission to call other services (e.g. load balancer)
+Cross-account access
+ - Need to create a Role for onother account
+ - After creating copy the Role ARN (like id)
+ - Define a policy it the other account
+
+Using Federation and Single Sign-on (SSO)
+=========================================
+SSO - Using Active Directory or Internal users DB
+Fedarted User - allow user to access many AWS accounts
+Asign user to permission set
+User --> Account --> Role
+SSO can integrate with 3rd party apps (e.g Slack)
+STS - Secirity Token Service
+ - Temporary credentials
+ - Limited Permissions 
+ - No IAM user needed
+Amazon Cognito - IDP with 3rd party (Facebook, Google)
+
+Maintaining Compliance
+======================
+Shared responsebillty model - what AWS are charge of and what you as user a responible for (e.g configuration)
+Password Policy
+Service Control Policy (SCP) - can be attached to organization
+
+Optimizing Costs
+================
+Choose proper instance of EC2 
+ - Ram \ CPU ammount (m5.large up to m5.24xlarge)
+ - Dedicated Host - dont use it unless u need one
+ - Volume Type - choose proper (note the the cost is also for an offline machine)
+ - Snapshots 
+S3 Storage
+ - Storage Class (latency impact) - Choose proper storage class (from glacier, standard..)
+Saving Plans 
+ - one to three years comitment with discounts
+Cost optimizating tools 
+ - AWS Cost Explorer (visualize & analyze)
+ - AWS Budjets (alert based on budjet)
+ - AWS Trusted Advisor (optimiztiong suggestions)
+
+ Reserved Insances and Spots (EC2)
+ =================================
+ Reserved Insances vs On demand, on demand is more expensive
+ More services works same like this: RDS, Redshift, ElasticCach, DynamoDB
+ Pricing Method can also change the price (upfront vs no-upfront)
+ Expensive to cheap options example:
+  - 3 Years On Demand
+  - 3 X 1-Year No Upfront 
+  - 3 Years All Upfront
+ Sell reserved instances on AWS Market 
+ Spot Instances
+  - Unused EC2 machines
+  - Can be interuppted at any time
+  - Cheap and good fot fault tollernt workloads
+
+
+================================================
+Advanced Networking
+================================================
+
+AWS Well Architected framework:
+ - Operational excellence 
+ - Security 
+ - Performance Efficiency 
+ - Reliabilty 
+ - Cost optimization
+
+VPC Fundamentals
+================
+Core components: Subnets, Route Tables, Gateways, Endpoints, Security Groups, Network ACL
+Availbity Zones are multiple, isolated locations within each Region (e.g Region: "us-east-1")
+VPC contains multiple subnets
+VPC are can use the CIDRs blocks that defined to it (e.g "10.0.0.0/16", "10.1.0.0/24")
+Each subnet is loacted in one and only availabilty zone
+AWS uses 5 default address in any subnet:
+ +0 = Network address
+ +1 = VPC Router
+ +2 = DNS Server
+ +3 = Just extra reserve
+ +last = Broadcast
+
